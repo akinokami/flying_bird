@@ -26,20 +26,43 @@ class MainMenuScreen extends StatelessWidget {
             height: double.infinity,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(Assets.menu),
+                image: AssetImage("assets/images/background.webp"),
                 fit: BoxFit.cover,
               ),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Column(
+                  children: [
+                    Image.asset("assets/images/bird.webp",width: 100,height: 100,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset("assets/images/bird.webp",width: 100,height: 100,),
+                        Image.asset("assets/images/bird.webp",width: 100,height: 100,),
+                      ],
+                    )
+                  ],
+                ),
                 Text(
                   'Flying Bird',
                   style: const TextStyle(
-                    fontSize: 30,
+                    fontSize: 40,
                     color: Colors.white,
                     fontFamily: 'Game',
                   ),
                 ),
+                 SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                Text(
+                  'Tap to start',
+                  style: const TextStyle(
+                    fontSize: 25,
+                    color: Colors.brown,
+                    fontFamily: 'Game',
+                  ),
+                ),
+
               ],
             )
             // Image.asset(Assets.message),
