@@ -22,16 +22,28 @@ class MainMenuScreen extends StatelessWidget {
           game.resumeEngine();
         },
         child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(Assets.menu),
-              fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(Assets.menu),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          child: Image.asset(Assets.message),
-        ),
+            child: Column(
+              children: [
+                Text(
+                  'Flying Bird',
+                  style: const TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontFamily: 'Game',
+                  ),
+                ),
+              ],
+            )
+            // Image.asset(Assets.message),
+            ),
       ),
     );
   }
