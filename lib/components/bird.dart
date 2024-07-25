@@ -13,6 +13,8 @@ class Bird extends SpriteGroupComponent<BirdMovement>
   Bird();
 
   int score = 0;
+  int bestScore = 0;
+  bool isNotMuted = true;
 
   @override
   Future<void> onLoad() async {
@@ -75,5 +77,8 @@ class Bird extends SpriteGroupComponent<BirdMovement>
     game.isHit = true;
     gameRef.overlays.add('gameOver');
     gameRef.pauseEngine();
+    if (score > bestScore) {
+      bestScore = score;
+    }
   }
 }

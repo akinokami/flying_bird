@@ -1,4 +1,3 @@
-import 'package:flying_bird/game/assets.dart';
 import 'package:flying_bird/game/flappy_bird_game.dart';
 import 'package:flutter/material.dart';
 
@@ -31,38 +30,63 @@ class MainMenuScreen extends StatelessWidget {
               ),
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                Container(
+                  padding: const EdgeInsets.all(20.0),
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(
+                      onTap: () {
+                        game.overlays.add('setting');
+                      },
+                      child: const Icon(
+                        Icons.settings,
+                        color: Colors.brown,
+                        size: 30,
+                      )),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
                 Column(
                   children: [
-                    Image.asset("assets/images/bird.webp",width: 100,height: 100,),
+                    Image.asset(
+                      "assets/images/bird.webp",
+                      width: 100,
+                      height: 100,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset("assets/images/bird.webp",width: 100,height: 100,),
-                        Image.asset("assets/images/bird.webp",width: 100,height: 100,),
+                        Image.asset(
+                          "assets/images/bird.webp",
+                          width: 100,
+                          height: 100,
+                        ),
+                        Image.asset(
+                          "assets/images/bird.webp",
+                          width: 100,
+                          height: 100,
+                        ),
                       ],
                     )
                   ],
                 ),
-                Text(
+                const Text(
                   'Flying Bird',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 40,
                     color: Colors.white,
                     fontFamily: 'Game',
                   ),
                 ),
-                 SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-                Text(
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                const Text(
                   'Tap to start',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 25,
                     color: Colors.brown,
                     fontFamily: 'Game',
                   ),
                 ),
-
               ],
             )
             // Image.asset(Assets.message),

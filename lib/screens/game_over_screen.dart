@@ -22,6 +22,14 @@ class GameOverScreen extends StatelessWidget {
                   fontFamily: 'Game',
                 ),
               ),
+              Text(
+                'Best Score: ${game.bird.bestScore}',
+                style: const TextStyle(
+                  fontSize: 60,
+                  color: Colors.white,
+                  fontFamily: 'Game',
+                ),
+              ),
               const SizedBox(height: 20),
               Image.asset(Assets.gameOver),
               const SizedBox(height: 20),

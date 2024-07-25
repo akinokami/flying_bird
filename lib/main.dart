@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flying_bird/game/flappy_bird_game.dart';
 import 'package:flying_bird/screens/main_menu_screen.dart';
+import 'package:flying_bird/screens/setting_screen.dart';
 import 'screens/game_over_screen.dart';
 
 Future<void> main() async {
@@ -20,6 +21,7 @@ Future<void> main() async {
       overlayBuilderMap: {
         'mainMenu': (context, _) => MainMenuScreen(game: game),
         'gameOver': (context, _) => GameOverScreen(game: game),
+        'setting': (context, _) => SettingScreen(game: game),
       },
     ),
   );
