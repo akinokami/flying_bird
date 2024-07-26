@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flying_bird/game/flappy_bird_game.dart';
 import 'package:flying_bird/screens/main_menu_screen.dart';
 import 'package:flying_bird/screens/setting_screen.dart';
+import 'package:get_storage/get_storage.dart';
 import 'screens/game_over_screen.dart';
 
 Future<void> main() async {
@@ -12,6 +13,7 @@ Future<void> main() async {
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.device.fullScreen();
+  await GetStorage.init();
 
   final game = FlappyBirdGame();
   runApp(

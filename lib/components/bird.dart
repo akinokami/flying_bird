@@ -7,6 +7,7 @@ import 'package:flying_bird/game/assets.dart';
 import 'package:flying_bird/game/configuration.dart';
 import 'package:flying_bird/game/flappy_bird_game.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 class Bird extends SpriteGroupComponent<BirdMovement>
     with HasGameRef<FlappyBirdGame>, CollisionCallbacks {
@@ -14,7 +15,7 @@ class Bird extends SpriteGroupComponent<BirdMovement>
 
   int score = 0;
   int bestScore = 0;
-  bool isNotMuted = true;
+  bool isNotMuted = false;
 
   @override
   Future<void> onLoad() async {
@@ -53,7 +54,9 @@ class Bird extends SpriteGroupComponent<BirdMovement>
         onComplete: () => current = BirdMovement.down,
       ),
     );
-    FlameAudio.play(Assets.flying);
+    if (isNotMuted) {
+      FlameAudio.play(Assets.flying);
+    }
     current = BirdMovement.up;
   }
 
@@ -73,12 +76,33 @@ class Bird extends SpriteGroupComponent<BirdMovement>
   }
 
   void gameOver() {
-    FlameAudio.play(Assets.collision);
+    if (isNotMuted) {
+      FlameAudio.play(Assets.collision);
+    }
     game.isHit = true;
     gameRef.overlays.add('gameOver');
     gameRef.pauseEngine();
     if (score > bestScore) {
       bestScore = score;
+      final box = GetStorage();
+      box.write('bestScore', bestScore);
     }
+  }
+
+  void getBestScore() {
+    final box = GetStorage();
+    bestScore = box.read('bestScore') ?? 0;
+  }
+
+  void getMute() {
+    final box = GetStorage();
+    isNotMuted = box.read('isNotMuted') ?? false;
+  }
+
+  void muteUnmute(mute) {
+    isNotMuted = mute;
+    final box = GetStorage();
+    box.write('isNotMuted', isNotMuted);
+    print("isNotMuted>>>$mute");
   }
 }

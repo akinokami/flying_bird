@@ -6,11 +6,13 @@ import 'package:flying_bird/game/configuration.dart';
 import 'package:flying_bird/game/flappy_bird_game.dart';
 import 'package:flying_bird/game/pipe_position.dart';
 import 'package:flying_bird/components/pipe.dart';
+import 'package:get_storage/get_storage.dart';
 
 class PipeGroup extends PositionComponent with HasGameRef<FlappyBirdGame> {
   PipeGroup();
 
   final _random = Random();
+  bool isNotMuted = false;
 
   @override
   Future<void> onLoad() async {
@@ -31,7 +33,11 @@ class PipeGroup extends PositionComponent with HasGameRef<FlappyBirdGame> {
 
   void updateScore() {
     gameRef.bird.score += 1;
-    FlameAudio.play(Assets.point);
+    final box = GetStorage();
+    isNotMuted = box.read('isNotMuted') ?? false;
+    if (isNotMuted) {
+      FlameAudio.play(Assets.point);
+    }
   }
 
   @override

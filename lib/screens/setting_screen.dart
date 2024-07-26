@@ -49,8 +49,9 @@ class _SettingScreenState extends State<SettingScreen> {
                     activeColor: Colors.green,
                     value: widget.game.bird.isNotMuted,
                     onToggle: (val) {
-                      widget.game.bird.isNotMuted = val;
-                      setState(() {});
+                      setState(() {
+                        widget.game.bird.muteUnmute(val);
+                      });
                       // soundController.vibrate();
                       // soundController.isMuted.value = val;
                       // soundController.muteUnmute();

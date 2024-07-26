@@ -13,6 +13,8 @@ class MainMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     game.pauseEngine();
+    game.bird.getMute();
+    game.bird.getBestScore();
 
     return Scaffold(
       body: GestureDetector(
