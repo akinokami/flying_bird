@@ -73,7 +73,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 onPressed: onRestart,
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
                 child: const Text(
-                  'Home',
+                  'Back',
                   style: TextStyle(fontSize: 20),
                 ),
               ),

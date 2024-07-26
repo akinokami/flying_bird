@@ -35,6 +35,30 @@ class GameOverScreen extends StatelessWidget {
             Image.asset(Assets.gameOver),
             const SizedBox(height: 20),
             ElevatedButton(
+              onPressed: () {
+                game.bird.reset();
+                game.overlays.remove('gameOver');
+                game.overlays.add('mainMenu');
+              },
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+              child: const Text(
+                'Home',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                game.overlays.add('setting');
+              },
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+              child: const Text(
+                'Setting',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
               onPressed: onRestart,
               style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
               child: const Text(

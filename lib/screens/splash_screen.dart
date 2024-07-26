@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flying_bird/game/flappy_bird_game.dart';
 import 'package:flying_bird/screens/game_over_screen.dart';
 import 'package:flying_bird/screens/main_menu_screen.dart';
+import 'package:flying_bird/screens/policy_screen.dart';
 import 'package:flying_bird/screens/setting_screen.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
               'mainMenu': (context, _) => MainMenuScreen(game: game),
               'gameOver': (context, _) => GameOverScreen(game: game),
               'setting': (context, _) => SettingScreen(game: game),
-              //'policy': (context, _) => PolicyScreen(game: game),
+              'policy': (context, _) => PolicyScreen(game: game),
             },
           ),
         ),
