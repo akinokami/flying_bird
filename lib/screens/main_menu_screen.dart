@@ -1,7 +1,7 @@
 import 'package:flying_bird/game/flappy_bird_game.dart';
 import 'package:flutter/material.dart';
 
-class MainMenuScreen extends StatelessWidget {
+class MainMenuScreen extends StatefulWidget {
   final FlappyBirdGame game;
   static const String id = 'mainMenu';
 
@@ -11,16 +11,144 @@ class MainMenuScreen extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<MainMenuScreen> createState() => _MainMenuScreenState();
+}
+
+class _MainMenuScreenState extends State<MainMenuScreen> {
+  String first = '';
+
+  @override
+  void initState() {
+    // final box = GetStorage();
+    // first = box.read('first') ?? '';
+    // if (first == '') {
+    //   widget.game.overlays.add('policy');
+    // }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    game.pauseEngine();
-    game.bird.getMute();
-    game.bird.getBestScore();
+    widget.game.pauseEngine();
+    widget.game.bird.getMute();
+    widget.game.bird.getBestScore();
+
+    // bool isAccepted = false;
+    // bool isChecked = false;
+    // String first = '';
+
+    // final box = GetStorage();
+    // first = box.read('first') ?? '';
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   if (first == '') {
+    //     return showDialog(
+    //       context: context,
+    //       barrierDismissible: false,
+    //       builder: (ctx) => Builder(builder: (context) {
+    //         return StatefulBuilder(
+    //           builder: (context, StateSetter setState) {
+    //             return AlertDialog(
+    //               title: const Text(
+    //                 'Privacy Policy',
+    //                 style: TextStyle(
+    //                   fontSize: 15,
+    //                   color: Colors.white,
+    //                   fontFamily: 'Game',
+    //                 ),
+    //               ),
+    //               // const CustomText(
+    //               //   text: 'Privacy Policy',
+    //               //   fontWeight: FontWeight.w500,
+    //               // ),
+    //               content: SizedBox(
+    //                 height: MediaQuery.of(context).size.height * 0.70,
+    //                 child: SingleChildScrollView(
+    //                     child: Column(
+    //                   children: [
+    //                     Text(
+    //                       Global.policy,
+    //                       style: const TextStyle(
+    //                         fontSize: 12,
+    //                         color: Colors.white,
+    //                         fontFamily: 'Game',
+    //                       ),
+    //                       // style: const TextStyle(fontSize: 12)
+    //                     ),
+    //                     Row(
+    //                       mainAxisAlignment: MainAxisAlignment.start,
+    //                       children: [
+    //                         Checkbox(
+    //                           shape: RoundedRectangleBorder(
+    //                               borderRadius: BorderRadius.circular(6)),
+    //                           activeColor: Colors.green,
+    //                           side: BorderSide(
+    //                             width: 1.5,
+    //                             color: isChecked ? Colors.green : Colors.black,
+    //                           ),
+    //                           value: isChecked,
+    //                           onChanged: (bool? value) {
+    //                             setState(() {
+    //                               isChecked = value!;
+    //                               if (isChecked) {
+    //                                 isAccepted = true;
+    //                               } else {
+    //                                 isAccepted = false;
+    //                               }
+    //                             });
+    //                           },
+    //                         ),
+    //                         const Text(
+    //                           'I agreed to the Privacy Policy.',
+    //                           style: TextStyle(
+    //                             fontSize: 12,
+    //                             color: Colors.white,
+    //                             fontFamily: 'Game',
+    //                           ),
+    //                         ),
+    //                         // const CustomText(
+    //                         //   text: 'I agreed to the Privacy Policy.',
+    //                         //   size: 12,
+    //                         // )
+    //                       ],
+    //                     ),
+    //                     ElevatedButton(
+    //                       child: const Text(
+    //                         'Accept',
+    //                         style: TextStyle(
+    //                           fontSize: 12,
+    //                           color: Colors.white,
+    //                           fontFamily: 'Game',
+    //                         ),
+    //                       ),
+    //                       // CustomText(
+    //                       //   text: 'Accept',
+    //                       //   size: 14,
+    //                       //   textColor: Colors.white,
+    //                       // ),
+    //                       onPressed: isAccepted
+    //                           ? () {
+    //                               final box = GetStorage();
+    //                               box.write('first', 'notfirst');
+    //                               Navigator.pop(context);
+    //                             }
+    //                           : null,
+    //                     ),
+    //                   ],
+    //                 )),
+    //               ),
+    //             );
+    //           },
+    //         );
+    //       }),
+    //     );
+    //   }
+    // });
 
     return Scaffold(
       body: GestureDetector(
         onTap: () {
-          game.overlays.remove('mainMenu');
-          game.resumeEngine();
+          widget.game.overlays.remove('mainMenu');
+          widget.game.resumeEngine();
         },
         child: Container(
             width: double.infinity,
@@ -39,12 +167,13 @@ class MainMenuScreen extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: GestureDetector(
                       onTap: () {
-                        game.overlays.add('setting');
+                        widget.game.overlays.add('setting');
                       },
-                      child: const Icon(
-                        Icons.settings,
+                      child: Image.asset(
+                        "assets/images/settings.webp",
+                        width: 45,
+                        height: 45,
                         color: Colors.brown,
-                        size: 30,
                       )),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.2),
