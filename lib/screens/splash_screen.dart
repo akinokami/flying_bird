@@ -5,6 +5,7 @@ import 'package:flying_bird/screens/game_over_screen.dart';
 import 'package:flying_bird/screens/main_menu_screen.dart';
 import 'package:flying_bird/screens/policy_screen.dart';
 import 'package:flying_bird/screens/setting_screen.dart';
+import 'package:get/utils.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -53,11 +54,11 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
           const SizedBox(height: 10),
-          const Center(
+          Center(
             child: Text(
-              'Flying Bird',
-              style: TextStyle(
-                fontSize: 48,
+              'flying_bird'.tr,
+              style: const TextStyle(
+                fontSize: 40,
                 fontFamily: 'Game',
                 color: Colors.brown,
               ),

@@ -1,6 +1,7 @@
 import 'package:flying_bird/game/assets.dart';
 import 'package:flying_bird/game/flappy_bird_game.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GameOverScreen extends StatelessWidget {
   final FlappyBirdGame game;
@@ -16,17 +17,17 @@ class GameOverScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Score: ${game.bird.score}',
+              "${'score'.tr}: ${game.bird.score}",
               style: const TextStyle(
-                fontSize: 60,
+                fontSize: 50,
                 color: Colors.white,
                 fontFamily: 'Game',
               ),
             ),
             Text(
-              'Best Score: ${game.bird.bestScore}',
+              "${'best_score'.tr}: ${game.bird.bestScore}",
               style: const TextStyle(
-                fontSize: 60,
+                fontSize: 50,
                 color: Colors.white,
                 fontFamily: 'Game',
               ),
@@ -41,29 +42,29 @@ class GameOverScreen extends StatelessWidget {
                 game.overlays.add('mainMenu');
               },
               style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-              child: const Text(
-                'Home',
-                style: TextStyle(fontSize: 20),
+              child: Text(
+                'home'.tr,
+                style: const TextStyle(fontSize: 18),
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                game.overlays.add('setting');
-              },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-              child: const Text(
-                'Setting',
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-            const SizedBox(height: 20),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     game.overlays.add('setting');
+            //   },
+            //   style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+            //   child: Text(
+            //     'setting'.tr,
+            //     style: const TextStyle(fontSize: 18),
+            //   ),
+            // ),
+            // const SizedBox(height: 20),
             ElevatedButton(
               onPressed: onRestart,
               style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-              child: const Text(
-                'Restart',
-                style: TextStyle(fontSize: 20),
+              child: Text(
+                'restart'.tr,
+                style: const TextStyle(fontSize: 18),
               ),
             ),
           ],

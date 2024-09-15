@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flying_bird/game/flappy_bird_game.dart';
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 import 'package:get_storage/get_storage.dart';
 
 class MainMenuScreen extends StatefulWidget {
@@ -112,19 +113,19 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                     )
                   ],
                 ),
-                const Text(
-                  'Flying Bird',
-                  style: TextStyle(
-                    fontSize: 40,
+                Text(
+                  'flying_bird'.tr,
+                  style: const TextStyle(
+                    fontSize: 35,
                     color: Colors.brown,
                     fontFamily: 'Game',
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-                const Text(
-                  'Tap to start',
-                  style: TextStyle(
-                    fontSize: 25,
+                Text(
+                  'tap_to_start'.tr,
+                  style: const TextStyle(
+                    fontSize: 22,
                     color: Colors.brown,
                     fontFamily: 'Game',
                   ),

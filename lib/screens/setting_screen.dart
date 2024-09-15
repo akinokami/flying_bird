@@ -1,6 +1,8 @@
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:flying_bird/controller/language_controller.dart';
 import 'package:flying_bird/game/flappy_bird_game.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SettingScreen extends StatefulWidget {
   final FlappyBirdGame game;
@@ -12,72 +14,255 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+  final languageController = Get.put(LanguageController());
   @override
   Widget build(BuildContext context) => Material(
         color: Colors.brown,
         child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text(
-                'Settings',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontFamily: 'Game',
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Sound',
-                    style: TextStyle(
-                      fontSize: 20,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Center(
+                  child: Text(
+                    'setting'.tr,
+                    style: const TextStyle(
+                      fontSize: 30,
                       color: Colors.white,
                       fontFamily: 'Game',
                     ),
                   ),
-                  const SizedBox(width: 70),
-                  FlutterSwitch(
-                    padding: 1.5,
-                    height: 23,
-                    width: 44,
-                    inactiveColor: Colors.grey, //const Color(0xFFE0E0E0),
-                    activeColor: Colors.green,
-                    value: widget.game.bird.isNotMuted,
-                    onToggle: (val) {
-                      setState(() {
-                        widget.game.bird.muteUnmute(val);
-                      });
-                      // soundController.vibrate();
-                      // soundController.isMuted.value = val;
-                      // soundController.muteUnmute();
-                    },
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.brown.shade400,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'sound'.tr,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontFamily: 'Game',
+                        ),
+                      ),
+                      FlutterSwitch(
+                        padding: 1.5,
+                        height: 23,
+                        width: 44,
+                        inactiveColor: Colors.grey, //const Color(0xFFE0E0E0),
+                        activeColor: Colors.green,
+                        value: widget.game.bird.isNotMuted,
+                        onToggle: (val) {
+                          setState(() {
+                            widget.game.bird.muteUnmute(val);
+                          });
+                          // soundController.vibrate();
+                          // soundController.isMuted.value = val;
+                          // soundController.muteUnmute();
+                        },
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'version : 1.0.0',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontFamily: 'Game',
                 ),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: onRestart,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-                child: const Text(
-                  'Back',
-                  style: TextStyle(fontSize: 20),
+                const SizedBox(height: 20),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      color: Colors.brown.shade400,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'change_language'.tr,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontFamily: 'Game',
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Obx(
+                        () => InkWell(
+                          onTap: () {
+                            languageController.changeLanguage("en", "US");
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/usa.webp',
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Text(
+                                    'English',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontFamily: 'Game',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Icon(
+                                languageController.language.value == "en"
+                                    ? Icons.check_circle
+                                    : Icons.check_circle_outline,
+                                color: languageController.language.value == "en"
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Obx(
+                        () => InkWell(
+                          onTap: () {
+                            languageController.changeLanguage("zh", "CN");
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/china.webp',
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Text(
+                                    '中文',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontFamily: 'Game',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Icon(
+                                languageController.language.value == "zh"
+                                    ? Icons.check_circle
+                                    : Icons.check_circle_outline,
+                                color: languageController.language.value == "zh"
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Obx(
+                        () => InkWell(
+                          onTap: () {
+                            languageController.changeLanguage("vi", "VN");
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/vietnam.webp',
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Text(
+                                    'Tiếng Việt',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontFamily: 'Game',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Icon(
+                                languageController.language.value == "vi"
+                                    ? Icons.check_circle
+                                    : Icons.check_circle_outline,
+                                color: languageController.language.value == "vi"
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      color: Colors.brown.shade400,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'version'.tr,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontFamily: 'Game',
+                        ),
+                      ),
+                      Text(
+                        '1.0.0'.tr,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontFamily: 'Game',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: onRestart,
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange),
+                    child: Text(
+                      'back'.tr,
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );
